@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "webox-record-backup-service.fullname" . }}
+  labels:
+    {{- include "webox-record-backup-service.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "webox-record-backup-service.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "webox-record-backup-service.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "webox-record-backup-service.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name : DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: webox-service-configmap
+                  key: db_host
+            - name : DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: webox-service-configmap
+                  key: db_port
+            - name : DB_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: webox-service-configmap
+                  key: db_username
+            - name : DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: webox-service-configmap
+                  key: db_password
+            - name : DB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: webox-service-configmap
+                  key: db_database
+            - name : RMQ_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: webox-service-configmap
+                  key: rabbitmq_username
+            - name : RMQ_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: webox-service-configmap
+                  key: rabbitmq_password
+            - name : RMQ_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: webox-service-configmap
+                  key: rabbitmq_host
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

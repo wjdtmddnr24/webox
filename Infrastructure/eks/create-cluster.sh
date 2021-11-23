@@ -1,0 +1,2 @@
+#/bin/bash
+eksctl create cluster --name webox-development --region ap-northeast-2 --with-oidc --ssh-access --ssh-public-key webox-keypair --managed --node-type t3.medium --full-ecr-access --alb-ingress-access

@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "recorddbinstance.cnhruvrclnvt.ap-northeast-2.rds.amazonaws.com",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "webox",
+            "database": "record",
+            "username": "postgres"
+        }
+    ]
+}

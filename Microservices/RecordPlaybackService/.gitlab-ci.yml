@@ -1,0 +1,61 @@
+stages: 
+    - test
+    - build
+    - deploy
+
+variables:
+    APP_NAME: webox-record-playback-service
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_HOST: tcp://docker:2375
+
+test:
+    stage: test
+    image: node:16
+    script:
+        - yarn
+        - yarn test
+
+build:
+    stage: build
+    image:
+        name: amazon/aws-cli
+        entrypoint: [""]
+    before_script:
+        - aws --version
+    services:
+        - docker:dind
+    before_script:
+        - amazon-linux-extras install docker
+        - aws --version
+        - docker --version
+    script:
+        - docker build -t $DOCKER_REGISTRY/$APP_NAME:$CI_PIPELINE_IID .
+        - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+        - docker push $DOCKER_REGISTRY/$APP_NAME:$CI_PIPELINE_IID
+
+deploy:
+    stage: deploy
+    image:
+        name: ubuntu
+        entrypoint: [""]
+    before_script:
+        - export DEBIAN_FRONTEND=noninteractive
+        - sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+        - apt update 
+        - apt install -y git openssh-client software-properties-common gnupg
+        - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64
+        - add-apt-repository -y ppa:rmescandon/yq && apt update && apt install yq -y
+        - git --version
+        - yq --version
+        - mkdir -p /root/.ssh
+        - echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
+        - ssh-keyscan -H git.swmgit.org > /root/.ssh/known_hosts
+        - chmod 600 /root/.ssh/id_rsa
+        - git config --global user.name wjdtmddnr24
+        - git config --global user.email wjdtmddnr24@naver.com
+    script:
+        - git clone --single-branch --branch master git@git.swmgit.org:swm-12/12_swm22/infrastructure.git
+        - cd infrastructure/helm-charts/$APP_NAME
+        - yq eval --inplace --verbose '.appVersion = env(CI_PIPELINE_IID) | .appVersion style="double"' Chart.yaml
+        - cat Chart.yaml
+        - git commit -am "Update $APP_NAME Version to $CI_PIPELINE_IID" && git push origin master
