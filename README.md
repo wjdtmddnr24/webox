@@ -1,4 +1,5 @@
 # webox
+
 > 2021년 소프트웨어 마에스트로 12기 백남준팀 메인 프로젝트
 
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
@@ -12,15 +13,38 @@
 
 퍼스널 모빌리티를 위한 클라우드 기반 블랙박스 어플리케이션
 
-
 ## 목차
-- [목차](#목차)
-- [프로젝트 설명]()
-- [프로젝트 구조]()
-  - [구조 개요]()
-  - [Infrastructure]()
-  - [백엔드 서버]()
-  - [어플리케이션]()
-- [프로젝트 진행 과정]()
-- [기여자 정보]()
-- [라이선스]()
+
+- [webox](#webox)
+  - [목차](#목차)
+  - [프로젝트 설명](#프로젝트-설명)
+  - [프로젝트 구조](#프로젝트-구조)
+    - [구조 개요](#구조-개요)
+    - [Infrastructure](#infrastructure)
+    - [백엔드 서버](#백엔드-서버)
+    - [어플리케이션](#어플리케이션)
+  - [프로젝트 진행 과정](#프로젝트-진행-과정)
+  - [기여자 정보](#기여자-정보)
+  - [라이선스](#라이선스)
+
+## 프로젝트 설명
+
+## 프로젝트 구조
+
+### 구조 개요
+
+### Infrastructure
+
+### 백엔드 서버
+
+### 어플리케이션
+
+## 프로젝트 진행 과정
+
+## 기여자 정보
+
+[정승욱](https://github.com/wjdtmddnr24)
+
+## 라이선스
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
