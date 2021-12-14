@@ -11,6 +11,12 @@
 ![GitLab CI](https://img.shields.io/badge/GitLabCI-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
+<br/>
+<p align="center">
+  <img src="assets/img/logo.png" alt="logo" width="400"/>
+</p>
+<br/>
+
 퍼스널 모빌리티를 위한 클라우드 기반 블랙박스 어플리케이션
 
 ## 목차
