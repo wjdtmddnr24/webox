@@ -15,7 +15,7 @@
 <p align="center">
   <img src="assets/img/logo.png" alt="logo" width="400"/>
 </p>
-<p align="center" style="font-weight:bold;font-size:1.3rem;">퍼스널 모빌리티를 위한 클라우드 기반 블랙박스 어플리케이션</p>
+<p align="center"><b>퍼스널 모빌리티를 위한 클라우드 기반 블랙박스 어플리케이션</b></p>
 <br/>
 
 ## 목차
