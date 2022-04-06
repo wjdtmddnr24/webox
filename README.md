@@ -1,3 +1,17 @@
+<style>
+  .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .container > * {
+    width: 49%;
+    min-width: 400px;
+  }
+
+</style>
+
 # webox
 
 > 2021년 소프트웨어 마에스트로 12기 백남준팀 메인 프로젝트
@@ -63,20 +77,50 @@
 프로젝트는 크게 **webox 블랙박스 어플리케이션**과 **webox** 클라우드 서버로 구성되어 있다.
 
 ![slide_57](./assets/img/slide_57.png)
-**webox 블랙박스 어플리케이션**은 Flutter를 이용해 개발하였고, 안드로이드와 iOS 플랫폼을 타겟으로 하고 있다.
+**webox 블랙박스 어플리케이션**은 안드로이드와 iOS 플랫폼을 타겟으로 동시 개발을 위해 Flutter를 이용해 개발하였다.
 
 ![slide_15](./assets/img/slide_15.png)
-**webox 클라우드 서버**는 마이크로서비스 아키텍처를 기반으로 설계하였고, 서비스들은 Nestjs(nodejs)와 Flask(python)를 이용해 개발되었다.
+**webox 클라우드 서버**는 높은 실시간 영상 업로드 트래픽, 지속적인 전달/배포의 용의성, 개발 편의성 등을 고려하여 마이크로서비스 아키텍처를 기반으로 설계하였다. 
 
 ### Infrastructure
+<!-- TODO: 서버 아키텍처 다이어그램 설명 -->
+![slide_24](./assets/img/slide_24.png)
+webox 백엔드 서버의 인프라는 AWS를 적극 활용하였다. 각 서비스 컨테이너를 관리하기위해 매니지드 쿠버네티스인 EKS를 사용하고, RabbitMQ 메시지 큐를 사용하기 위해 Amazon MQ를 사용했으며, 데이터베이스로 AWS RDS, 영상 데이터 파일 관리로 AWS S3, 이외에 AWS API Gateway, AWS ECR, Route53 등을 사용하였다. 
+<!-- TODO: 쿠버네티스 설명 -->
+![slide_17](./assets/img/slide_17.png)
+쿠버네티스를 사용
+<!-- TODO: CI/CD 파이프라인 설명  -->
+<div class="container">
+  <img src="./assets/img/slide_18.png">
+  <img src="./assets/img/slide_19.png">
+</div>
+CI/CD 파이프라인을 생성, 활용
 
 ### 백엔드 서버
+<!-- TODO: 각 서비스 설명(언어, 기능, 등등) -->
+![slide_16](./assets/img/slide_16.png)
+기능별로 서비스를 분리하고 개발을 진행
+NestJS(TypeScript), Flask(Python)을 활용
 
 ### 영상 인식 AI
+<div class="container">
+  <img src="./assets/img/slide_21.png">
+  <img src="./assets/img/slide_22.png">
+</div>
+영상 인식 AI를 개발
 
 ### 어플리케이션
+<!-- TODO: 영상 업로드 설명 -->
+![slide_20](./assets/img/slide_20.png)
+녹화영상 실시간 업로드
+<!-- TODO: 화면 스크린샷 첨부 -->
 
 ## 프로젝트 진행 과정 및 개발 현황
+<div class="container">
+  <img src="./assets/img/slide_30.png">
+  <img src="./assets/img/slide_31.png">
+</div>
+소마 기간동안 프로젝트 진행
 
 ## 기여자 정보
 
