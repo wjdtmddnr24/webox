@@ -1,17 +1,3 @@
-<style>
-  .container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .container > * {
-    width: 49%;
-    min-width: 400px;
-  }
-
-</style>
-
 # webox
 
 > 2021년 소프트웨어 마에스트로 12기 백남준팀 메인 프로젝트
@@ -90,9 +76,9 @@ webox 백엔드 서버의 인프라는 AWS를 적극 활용하였다. 각 서비
 ![slide_17](./assets/img/slide_17.png)
 쿠버네티스를 사용
 <!-- TODO: CI/CD 파이프라인 설명  -->
-<div class="container">
-  <img src="./assets/img/slide_18.png">
-  <img src="./assets/img/slide_19.png">
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;">
+  <img src="./assets/img/slide_18.png" style="width: 49%;min-width: 400px;">
+  <img src="./assets/img/slide_19.png" style="width: 49%;min-width: 400px;">
 </div>
 CI/CD 파이프라인을 생성, 활용
 
@@ -103,9 +89,9 @@ CI/CD 파이프라인을 생성, 활용
 NestJS(TypeScript), Flask(Python)을 활용
 
 ### 영상 인식 AI
-<div class="container">
-  <img src="./assets/img/slide_21.png">
-  <img src="./assets/img/slide_22.png">
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;">
+  <img src="./assets/img/slide_21.png" style="width: 49%;min-width: 400px;">
+  <img src="./assets/img/slide_22.png" style="width: 49%;min-width: 400px;">
 </div>
 영상 인식 AI를 개발
 
@@ -116,9 +102,9 @@ NestJS(TypeScript), Flask(Python)을 활용
 <!-- TODO: 화면 스크린샷 첨부 -->
 
 ## 프로젝트 진행 과정 및 개발 현황
-<div class="container">
-  <img src="./assets/img/slide_30.png">
-  <img src="./assets/img/slide_31.png">
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;">
+  <img src="./assets/img/slide_30.png" style="width: 49%;min-width: 400px;">
+  <img src="./assets/img/slide_31.png" style="width: 49%;min-width: 400px;">
 </div>
 소마 기간동안 프로젝트 진행
 
